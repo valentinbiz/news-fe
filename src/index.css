@@ -174,7 +174,7 @@ img{
   box-shadow: 0 0 7px 1px rgba(60, 60,60, 04);
   border-radius: 10px;
   text-align: left;
-  margin: 3% 2% 3% 2%;
+  margin: 3% 0 3% 0;
 }
 
 .comment_content{
@@ -237,6 +237,6 @@ a{
     box-shadow: 0 0 7px 1px rgba(60, 60,60, 04);
     border-radius: 10px;
     text-align: left;
-    margin: 3% 2% 3% 2%;
+    margin: 3% 0 3% 0;
   }
 }

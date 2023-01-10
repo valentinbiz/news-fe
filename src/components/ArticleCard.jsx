@@ -1,6 +1,22 @@
+import { Link } from "react-router-dom";
+
 const ItemCard = ({ article }) => {
+  const backgroundPicture =
+    article.topic === "football"
+      ? "#e0c9bd"
+      : article.topic === "cooking"
+      ? "#698f7d"
+      : article.topic === "coding"
+      ? "#bec6c0"
+      : "unknown";
+
   return (
-    <div className="card">
+    <div
+      className="card"
+      style={{
+        backgroundColor: `${backgroundPicture}`,
+      }}
+    >
       <h2> {article.title} </h2>
       <h3> Author: {article.author}</h3>
       <div className="card_article_info">
@@ -8,7 +24,9 @@ const ItemCard = ({ article }) => {
         <h4> Votes: {article.votes}</h4>
       </div>
       <div className="card_buttons">
-        <button> Read article</button>
+        <Link to={`/articles/${article.article_id}`}>
+          <button> Read article</button>
+        </Link>
         <button> Save article for later</button>
       </div>
     </div>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Homepage = () => {
   return (
     <div className="homepage__div">
-      <h1> Falsey news</h1>
+      <h1> !falsey news</h1>
       <h2>
         The platform with totally true, verified news platform <br /> where the
         truth gets a new meaning.

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import Comments from "../components/Comments";
 import Loading from "../components/Loading";
 import { fetchSingleArticle } from "../utils/api";
 
@@ -12,8 +13,8 @@ const SingleArticle = () => {
     setIsLoading(true);
     fetchSingleArticle(article_id).then(({ article }) => {
       setSingleArticle(article);
-      setIsLoading(false);
       setPostedTime(article.created_at.substring(0, 10));
+      setIsLoading(false);
     });
   }, [article_id]);
 
@@ -29,6 +30,7 @@ const SingleArticle = () => {
         </div>
         <h2>{singleArticle.body}</h2>
       </div>
+      <Comments articleId={article_id} />
     </div>
   );
 };

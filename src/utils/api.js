@@ -23,3 +23,14 @@ export const fetchTopics = () => {
     return res.data;
   });
 };
+
+export const fetchComments = (articleId) => {
+  return myApi.get(`articles/${articleId}/comments`).then((res) => {
+    return res.data;
+  });
+};
+export const fetchUsers = (userName) => {
+  return myApi.get(`/users/${userName}`).then((res) => {
+    return res.data;
+  });
+};

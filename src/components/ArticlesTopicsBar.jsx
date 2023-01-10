@@ -1,21 +1,16 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { fetchTopics } from "../utils/api";
-import Loading from "./Loading";
 
 const ArticleTopicsBar = () => {
-  const [isLoading, setIsLoading] = useState(false);
   const [topics, setTopics] = useState();
 
   useEffect(() => {
-    setIsLoading(true);
     fetchTopics().then(({ topics }) => {
       setTopics(topics);
-      setIsLoading(false);
     });
   }, []);
 
-  if (isLoading) return <Loading />;
   return (
     <div>
       <div className="navbar__div">

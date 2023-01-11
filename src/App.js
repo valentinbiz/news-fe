@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Articles from "./pages/Articles";
+import Error from "./pages/Error";
 import Homepage from "./pages/Homepage";
 import SingleArticle from "./pages/SingleArticle";
 
@@ -15,6 +16,7 @@ function App() {
           <Route path="/articles" element={<Articles />} />
           <Route path="/articles/topics/:topic" element={<Articles />} />
           <Route path="/articles/:article_id" element={<SingleArticle />} />
+          <Route path="/error" element={<Error />} />
         </Routes>
       </BrowserRouter>
     </div>

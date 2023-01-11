@@ -1,7 +1,6 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faThumbsUp, faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import { fetchUsers } from "../utils/api";
+import Votes from "./ItemVotes";
 
 const CommentsCard = ({ comment }) => {
   const [user, setUser] = useState([]);
@@ -10,7 +9,7 @@ const CommentsCard = ({ comment }) => {
     fetchUsers(comment.author).then(({ user }) => {
       setUser(user);
     });
-  });
+  }, [comment.author]);
   return (
     <div className="comment_container">
       <div className="comment_user_image">
@@ -22,15 +21,7 @@ const CommentsCard = ({ comment }) => {
         <br />
         <span className="comment_body">{comment.body}</span>
       </div>
-      <div className="comment_votes">
-        <p>
-          <FontAwesomeIcon icon={faThumbsUp} />
-        </p>
-        <p>{comment.votes}</p>
-        <p>
-          <FontAwesomeIcon icon={faThumbsDown} />
-        </p>
-      </div>
+      <Votes votes={comment.votes} />
     </div>
   );
 };

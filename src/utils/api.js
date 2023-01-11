@@ -25,7 +25,7 @@ export const fetchTopics = () => {
 };
 
 export const fetchComments = (articleId) => {
-  return myApi.get(`articles/${articleId}/comments`).then((res) => {
+  return myApi.get(`/articles/${articleId}/comments`).then((res) => {
     return res.data;
   });
 };
@@ -33,4 +33,12 @@ export const fetchUsers = (userName) => {
   return myApi.get(`/users/${userName}`).then((res) => {
     return res.data;
   });
+};
+
+export const patchArticleVotes = (articleId, newVote) => {
+  return myApi
+    .patch(`/articles/${articleId}`, { inc_votes: newVote })
+    .then((res) => {
+      return res.data;
+    });
 };

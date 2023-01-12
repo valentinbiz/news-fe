@@ -34,7 +34,7 @@ export default function BasicModal({ open, onClose, errorMessage }) {
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Oopsie!
           </Typography>
-          <img className="error_cat" src={cat} alt={cat}></img>
+          <img className="error_cat" src={cat} alt="sad cat error"></img>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             {errorMessage}
           </Typography>

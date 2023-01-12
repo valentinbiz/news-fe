@@ -4,7 +4,7 @@ import { useParams } from "react-router";
 import Comments from "../components/Comments";
 import Votes from "../components/ItemVotes";
 import Loading from "../components/Loading";
-import Error from "./Error";
+import BasicModal from "../components/ErrorModal";
 
 import { fetchSingleArticle, patchArticleVotes } from "../utils/api";
 
@@ -14,6 +14,7 @@ const SingleArticle = () => {
   const [postedTime, setPostedTime] = useState("");
   const [votesCount, setVotesCount] = useState(0);
   const [patchError, setPatchError] = useState(null);
+  const [displayModal, setDisplayModal] = useState(false);
 
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
@@ -30,26 +31,30 @@ const SingleArticle = () => {
     setVotesCount((currVotesCount) => currVotesCount + incrementAmount);
     patchArticleVotes(article_id, incrementAmount).catch((error) => {
       setVotesCount((currVotesCount) => currVotesCount - incrementAmount);
-      setPatchError("Sorry, something went wrong. Please try again");
+      setPatchError(
+        "Sorry, something went wrong and your vote was not recorded. Please try again later!"
+      );
+      setDisplayModal(true);
     });
   };
 
   if (isLoading) return <Loading />;
-  if (patchError)
-    return (
-      <Error
-        errorMessage={patchError}
-        article={article_id}
-        setPatchError={setPatchError}
-      />
-    );
 
   return (
     <div className="single_article_page">
+      <BasicModal
+        open={displayModal}
+        onClose={() => setDisplayModal(false)}
+        errorMessage={patchError}
+      />
       <div className="single_article_container">
         <div className="single_article_header">
           <h1>{singleArticle.title}</h1>
-          <Votes votes={votesCount} voteChange={adjustCount} />
+          <Votes
+            votes={votesCount}
+            voteChange={adjustCount}
+            errorStatus={patchError}
+          />
         </div>
         <div className="single_article_info">
           <h3>Author: {singleArticle.author}</h3>

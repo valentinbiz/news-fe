@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
 
+import "../styles/HomepageStyle.css";
+import "../styles/ButtonsStyle.css";
+
 const Homepage = () => {
   return (
     <div className="homepage__div">

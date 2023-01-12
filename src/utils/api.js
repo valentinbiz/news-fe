@@ -42,3 +42,14 @@ export const patchArticleVotes = (articleId, newVote) => {
       return res.data;
     });
 };
+
+export const postArticleComment = (articleId, author, commentData) => {
+  return myApi
+    .post(`/articles/${articleId}/comments`, {
+      username: author,
+      body: commentData,
+    })
+    .then((res) => {
+      return res.data;
+    });
+};

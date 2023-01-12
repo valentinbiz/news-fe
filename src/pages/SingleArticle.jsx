@@ -4,17 +4,21 @@ import { useParams } from "react-router";
 import Comments from "../components/Comments";
 import Votes from "../components/ItemVotes";
 import Loading from "../components/Loading";
-import BasicModal from "../components/ErrorModal";
+import BasicModal from "../components/Modal";
 
 import { fetchSingleArticle, patchArticleVotes } from "../utils/api";
+import AddComment from "../components/AddComment";
+
+import "../styles/SingleArticleStyle.css";
 
 const SingleArticle = () => {
   const { article_id } = useParams();
   const [singleArticle, setSingleArticle] = useState([]);
   const [postedTime, setPostedTime] = useState("");
   const [votesCount, setVotesCount] = useState(0);
-  const [patchError, setPatchError] = useState(null);
+  const [error, setError] = useState(null);
   const [displayModal, setDisplayModal] = useState(false);
+  const [numberOfArticles, setNumberOfArticles] = useState(0);
 
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
@@ -24,6 +28,7 @@ const SingleArticle = () => {
       setPostedTime(article.created_at.substring(0, 10));
       setVotesCount(article.votes);
       setIsLoading(false);
+      setNumberOfArticles(article.comment_count);
     });
   }, [article_id]);
 
@@ -31,7 +36,7 @@ const SingleArticle = () => {
     setVotesCount((currVotesCount) => currVotesCount + incrementAmount);
     patchArticleVotes(article_id, incrementAmount).catch((error) => {
       setVotesCount((currVotesCount) => currVotesCount - incrementAmount);
-      setPatchError(
+      setError(
         "Sorry, something went wrong and your vote was not recorded. Please try again later!"
       );
       setDisplayModal(true);
@@ -45,7 +50,8 @@ const SingleArticle = () => {
       <BasicModal
         open={displayModal}
         onClose={() => setDisplayModal(false)}
-        errorMessage={patchError}
+        modalMessage={error}
+        modalType="error"
       />
       <div className="single_article_container">
         <div className="single_article_header">
@@ -53,7 +59,7 @@ const SingleArticle = () => {
           <Votes
             votes={votesCount}
             voteChange={adjustCount}
-            errorStatus={patchError}
+            errorStatus={error}
           />
         </div>
         <div className="single_article_info">
@@ -63,7 +69,14 @@ const SingleArticle = () => {
         </div>
         <h2>{singleArticle.body}</h2>
       </div>
-      <Comments articleId={article_id} />
+      <div className="comments_section">
+        <Comments articleId={article_id} articles={numberOfArticles} />
+        <AddComment
+          articleId={article_id}
+          setError={setError}
+          setNumberOfArticles={setNumberOfArticles}
+        />
+      </div>
     </div>
   );
 };

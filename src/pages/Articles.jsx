@@ -7,6 +7,8 @@ import Loading from "../components/Loading";
 import { useParams } from "react-router-dom";
 import ArticleTopicsBar from "../components/ArticlesTopicsBar";
 
+import "../styles/ArticlesPage.css";
+
 const Articles = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [articles, setArticles] = useState([]);

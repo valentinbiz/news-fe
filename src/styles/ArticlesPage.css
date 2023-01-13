@@ -1,0 +1,24 @@
+.articles__div{
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  
+  
+  .single_article_page img{
+    object-fit: cover;
+  }
+  
+  .card h2 {
+    font-style: italic;
+  }
+  
+  .article_info{
+    display: flex;
+    justify-content: space-evenly;
+  
+    width: 100%;
+  }

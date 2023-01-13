@@ -1,3 +1,5 @@
+import "../styles/LoadingAnimation.css";
+
 const Loading = () => {
   return (
     <div className="loader">

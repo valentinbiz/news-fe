@@ -3,7 +3,8 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import cat from "../images/cat.png";
+import sadCat from "../images/cat.png";
+import okCat from "../images/okcat.png";
 
 const style = {
   position: "absolute",
@@ -22,7 +23,7 @@ const style = {
   borderRadius: "10px",
 };
 
-export default function BasicModal({ open, onClose, errorMessage }) {
+export default function BasicModal({ open, onClose, modalMessage, modalType }) {
   return (
     <div>
       <Modal
@@ -32,11 +33,15 @@ export default function BasicModal({ open, onClose, errorMessage }) {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Oopsie!
+            {modalType === "error" ? "Oopsie!" : "Hurray!"}
           </Typography>
-          <img className="error_cat" src={cat} alt="sad cat error"></img>
+          <img
+            className="error_cat"
+            src={modalType === "error" ? sadCat : okCat}
+            alt={`${modalType} cat`}
+          ></img>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            {errorMessage}
+            {modalMessage}
           </Typography>
           <Button onClick={() => onClose(false)}>Close</Button>
         </Box>

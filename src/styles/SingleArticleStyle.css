@@ -1,0 +1,33 @@
+
+.single_article_container{
+    height: fit-content;
+    text-align: justify;
+    color: #323534;
+    background-color: #bbc8bd;
+    margin-top: 30px;
+    border-radius: 10px; 
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    min-height: 400px;
+    padding: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+  
+  .single_article_header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .single_article_header h1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .single_article_info{
+      display: flex;
+      justify-content: space-evenly;
+      width: 100%;
+  }

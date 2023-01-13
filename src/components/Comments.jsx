@@ -3,7 +3,9 @@ import { fetchComments } from "../utils/api";
 import CommentsCard from "./CommentsList";
 import Loading from "./Loading";
 
-const Comments = ({ articleId }) => {
+import "../styles/CommentsListStyle.css";
+
+const Comments = ({ articleId, articles }) => {
   const [commentsList, setCommentsList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -13,15 +15,17 @@ const Comments = ({ articleId }) => {
       setCommentsList(comments);
       setIsLoading(false);
     });
-  }, [articleId]);
+  }, [articleId, articles]);
 
   if (isLoading) return <Loading />;
   return (
     <div className="comments_list">
-      <h1>Comments</h1>
-      {commentsList.map((comment) => {
-        return <CommentsCard comment={comment} key={comment.comment_id} />;
-      })}
+      <h1>Comments: {articles}</h1>
+      <div className="comments_list_container">
+        {commentsList.map((comment) => {
+          return <CommentsCard comment={comment} key={comment.comment_id} />;
+        })}
+      </div>
     </div>
   );
 };

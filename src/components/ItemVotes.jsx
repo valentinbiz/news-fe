@@ -47,7 +47,7 @@ const Votes = ({ votes, voteChange, errorStatus }) => {
           <FontAwesomeIcon icon={faThumbsUp} size={"2x"} />
         )}
       </button>
-      <h4>{votes}</h4>
+      <p>{votes}</p>
       <button
         disabled={upVote}
         onClick={() => {

@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 
+import "../styles/ArticleCardStyle.css";
+
 const ItemCard = ({ article }) => {
   const backgroundPicture =
     article.topic === "football"

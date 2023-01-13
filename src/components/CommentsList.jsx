@@ -17,7 +17,10 @@ const CommentsCard = ({ comment }) => {
       </div>
       <div className="comment_content">
         <span className="comment_name"> {comment.author}</span>
-        <span className="comment_time">{comment.created_at}</span> <br />
+        <span className="comment_time">
+          {comment.created_at.substring(0, 10)}
+        </span>
+        <br />
         <br />
         <span className="comment_body">{comment.body}</span>
       </div>

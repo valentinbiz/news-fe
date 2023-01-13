@@ -1,0 +1,84 @@
+
+.add_comment_container {
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.add_comment_container h1 {
+  color: #bcbcbc;
+}
+
+
+.form-container {
+    margin: 3%;
+    margin-right: 0;
+    margin-top: 0;
+    display: flex;
+    width: 97%;
+    flex-direction:column;
+    align-items: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #666666;
+    border-radius: 10px;
+    color: black;
+    height: 40vh;
+  }
+  
+  .form-container textarea, .form-container input, .form-container label{
+    width: 90%; 
+    padding: 10px;
+    border-radius: 0px; 
+    box-sizing: border-box; 
+    margin: 10px; 
+    background-color: transparent;
+    border: 0px;
+    font-weight: 700;
+    font-size: large;
+    cursor: pointer;
+    color: black;
+    opacity: 0.6;
+    -webkit-transition: opacity 0.4s ease-out;
+    -o-transition: opacity 0.4s ease-out;
+    transition: opacity 0.4s ease-out;
+    letter-spacing: -0.1px;
+    position: relative;
+    border-bottom: 1px solid black;
+  }
+  
+  input::before, textarea::before, label::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    max-width: 0;
+    height: 1px;
+    bottom: -1px;
+    left: 0;
+    background-color: var(--on-background);
+    opacity: 0;
+    -webkit-transition: max-width 0.4s ease-out;
+    -o-transition: max-width 0.4s ease-out;
+    transition: max-width 0.4s ease-out;
+    border: 0;
+    color: black;
+  }
+  
+  input:hover, textarea:hover, label:hover{
+    opacity: 1;
+  }
+  
+  input:hover:before, textarea:hover::before, label:hover::before {
+    opacity: 1;
+    visibility: visible;
+    max-width: 100%;
+  }
+  
+  textarea:focus, input:focus, label:focus{
+    outline: none;
+  }
+
+  textarea::placeholder, input::placeholder {
+    color: black;
+  }

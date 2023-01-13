@@ -23,10 +23,11 @@
     align-items: center;
     background-color: #666666;
     border-radius: 10px;
+    color: black;
     height: 40vh;
   }
   
-  textarea, input, label{
+  .form-container textarea, .form-container input, .form-container label{
     width: 90%; 
     padding: 10px;
     border-radius: 0px; 
@@ -61,6 +62,7 @@
     -o-transition: max-width 0.4s ease-out;
     transition: max-width 0.4s ease-out;
     border: 0;
+    color: black;
   }
   
   input:hover, textarea:hover, label:hover{
@@ -75,4 +77,8 @@
   
   textarea:focus, input:focus, label:focus{
     outline: none;
+  }
+
+  textarea::placeholder, input::placeholder {
+    color: black;
   }

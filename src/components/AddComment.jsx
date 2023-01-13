@@ -2,6 +2,7 @@ import { useState } from "react";
 import "../styles/CommentFormStyle.css";
 import { postArticleComment } from "../utils/api";
 import BasicModal from "./Modal";
+import Loading from "./Loading";
 
 const AddComment = ({ articleId, setNumberOfArticles }) => {
   const [errorMessage, setErrorMessage] = useState("");
@@ -9,6 +10,7 @@ const AddComment = ({ articleId, setNumberOfArticles }) => {
   const [commentData, setCommentData] = useState("");
   const [displayModal, setDisplayModal] = useState(false);
   const [modalTypeState, setModalTypeState] = useState("");
+  const [requestSubmitted, setRequestSubmitted] = useState(false);
 
   const handleUsernameCHange = (event) => {
     setusernameData(event.target.value);
@@ -18,6 +20,7 @@ const AddComment = ({ articleId, setNumberOfArticles }) => {
   };
 
   const handleCommentSubmit = () => {
+    setRequestSubmitted(true);
     if (usernameData && commentData) {
       postArticleComment(articleId, usernameData, commentData)
         .then((res) => {
@@ -27,6 +30,7 @@ const AddComment = ({ articleId, setNumberOfArticles }) => {
           setusernameData("");
           setCommentData("");
           setNumberOfArticles((currArticles) => currArticles + 1);
+          setRequestSubmitted(false);
         })
         .catch((error) => {
           setModalTypeState("error");
@@ -34,11 +38,13 @@ const AddComment = ({ articleId, setNumberOfArticles }) => {
             "Sorry, something went wrong and your comment was not posted. Please check the details and try again later!"
           );
           setDisplayModal(true);
+          setRequestSubmitted(false);
         });
     } else {
       setModalTypeState("error");
       setErrorMessage("Make sure you completed all the fields!");
       setDisplayModal(true);
+      setRequestSubmitted(false);
     }
   };
   return (
@@ -78,7 +84,11 @@ const AddComment = ({ articleId, setNumberOfArticles }) => {
             jessjelly * to post comments
           </p>
         </form>
-        <button onClick={() => handleCommentSubmit()}> Submit comment</button>
+        {requestSubmitted ? (
+          <Loading />
+        ) : (
+          <button onClick={() => handleCommentSubmit()}> Submit comment</button>
+        )}
       </div>
     </div>
   );
